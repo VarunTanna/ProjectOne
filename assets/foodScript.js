@@ -5,7 +5,7 @@ var qInput = document.querySelector('#q');
 var formatInput = document.querySelector('#format');
 var searchForm = document.querySelector('#loc-search-form');
 
-var drinkURL = "https://www.themealdb.com/api/json/v1/1/search.php?s=" + qInput.value;
+var foodURL = "https://www.themealdb.com/api/json/v1/1/search.php?s=" + qInput.value;
 
 var getSearchResults = function (q, format) {
     var searchURL;
@@ -61,7 +61,7 @@ function getApi(event) {
     event.preventDefault();
     
 
-    fetch(drinkURL)
+    fetch(foodURL)
         .then(function (response) {
             return response.json();
         })
@@ -107,7 +107,7 @@ function getApi(event) {
 };  
 
 
-
+// changed the drinkURL's to foodURL's
 
 
 
