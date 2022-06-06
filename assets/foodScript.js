@@ -1,11 +1,11 @@
 // food
 
 var searchResultsEl = document.querySelector('#search-results');
-var qInput = document.querySelector('#q');
+// var qInput = document.querySelector('#q');
 var formatInput = document.querySelector('#format');
-var searchForm = document.querySelector('#loc-search-form');
+var searchForm = document.querySelector('#food-search-form');
 
-var foodURL = "https://www.themealdb.com/api/json/v1/1/search.php?s=" + qInput.value;
+// var foodURL = "https://www.themealdb.com/api/json/v1/1/search.php?s=" + qInput.value;
 
 var getSearchResults = function (q, format) {
     var searchURL;
@@ -59,7 +59,8 @@ function getIngredients(obj){
 
 function getApi(event) {
     event.preventDefault();
-    
+    var qInput = document.querySelector('#q-food');
+    var foodURL = "https://www.themealdb.com/api/json/v1/1/search.php?s=" + qInput.value;
 
     fetch(foodURL)
         .then(function (response) {
@@ -93,28 +94,22 @@ function getApi(event) {
                 var pEl = document.createElement('p');
                 pEl.textContent = meal.strInstructions;
 
-                var btnEl = document.createElement('button');
+                var btnEl = document.createElement('a');
                 btnEl.className = "btn btn-light text-dark";
                 btnEl.textContent = "Learn More";
+                btnEl.setAttribute('href', meal.strYoutube)
 
                 articleEl.appendChild(h3El);
                 articleEl.appendChild(pEl);
-                articleEl.appendChild(btnEl);
                 articleEl.appendChild(ulEl);
                 searchResultsEl.appendChild(articleEl);
+                articleEl.appendChild(btnEl);
             }
         });
 };  
 
 
 // changed the drinkURL's to foodURL's
-
-
-
-
-
-
-
 
 
 

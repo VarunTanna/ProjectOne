@@ -1,13 +1,13 @@
 // drinks
-// our gobal var's
+// our global var's
 var searchResultsEl = document.querySelector('#search-results');
-var qInput = document.querySelector('#q');
+// var qInput = document.querySelector('#q');
 var formatInput = document.querySelector('#format');
-var searchForm = document.querySelector('#loc-search-form');
+var searchForm = document.querySelector('#drink-search-form');
 
 
-// drink api rul with a blank "="(equals) so that the user can search anything. 
-var drinkURL = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + qInput.value;
+// drink api url with a blank "="(equals) so that the user can search anything. 
+// var drinkURL = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + qInput.value;
 
 var getSearchResults = function (q, format) {
     var searchURL;
@@ -23,50 +23,52 @@ var getSearchResults = function (q, format) {
 function getIngredients(obj){
     return Object
     .keys(obj)
-    .filter(key=>key.includes("Ingredients"))
+    .filter(key=>key.includes("Ingredient"))
     .map(ingredient=>obj[ingredient])
     .filter(ingredient=>ingredient);
 }
 
 function getApi(event) {
     event.preventDefault();
-
+    var qInput = document.querySelector('#q-drink');
+    var drinkURL = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + qInput.value;
     fetch(drinkURL)
     .then(function(response) {
         return response.json();
     })
-    .then(function ({idDrink}) {
+    .then(function ({drinks}) {
         searchResultsEl.innerHTML = null;
-        console.log(idDrink);
-        // something isnt working in line 42
-        for (var drink of idDrink) {
-            var ingredients = getIngredients(idDrink);
+        console.log(drinks);
+
+        for (var drink of drinks) {
+            var ingredients = getIngredients(drink);
             var ulEl = document.createElement('ul');
             for (var ingredient of ingredients) {
                 var liEl = document.createElement('li');
                 liEl.textContent = ingredient;
                 ulEl.appendChild(liEl);
             }
-            console.log(idDrink)
+            console.log(drink)
 
             var articleEl = document.createElement('article');
                 articleEl.className = "card p-3 my-3 bg-dark text-light";
 
                 var h3El = document.createElement('h3');
-                h3El.textContent = idDrink.strDrink;
+                h3El.textContent = drink.strDrink;
 
                 var pEl = document.createElement('p');
                 pEl.textContent = drink.strInstructions;
 
-                var btnEl = document.createElement('button');
+                var btnEl = document.createElement('a');
                 btnEl.className = "btn btn-light text-dark";
                 btnEl.textContent = "Learn More";
+                btnEl.setAttribute('href', drink.strYoutube)
 
                 articleEl.appendChild(h3El);
                 articleEl.appendChild(pEl);
-                articleEl.appendChild(btnEl);
                 articleEl.appendChild(ulEl);
                 searchResultsEl.appendChild(articleEl);
+                articleEl.appendChild(btnEl);
         }
 
     });
