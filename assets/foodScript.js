@@ -59,7 +59,8 @@ function getIngredients(obj){
 
 function getApi(event) {
     event.preventDefault();
-    var qInput = document.querySelector('#q-food');
+    var qInput = document.querySelector('#q');
+    console.log(qInput.value);
     var foodURL = "https://www.themealdb.com/api/json/v1/1/search.php?s=" + qInput.value;
 
     fetch(foodURL)
