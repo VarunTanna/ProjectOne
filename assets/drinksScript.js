@@ -20,12 +20,12 @@ var getSearchResults = function (q, format) {
 }
 
 // Sasha's code
-function getIngredients(obj){
+function getIngredients(obj) {
     return Object
-    .keys(obj)
-    .filter(key=>key.includes("Ingredient"))
-    .map(ingredient=>obj[ingredient])
-    .filter(ingredient=>ingredient);
+        .keys(obj)
+        .filter(key => key.includes("Ingredient"))
+        .map(ingredient => obj[ingredient])
+        .filter(ingredient => ingredient);
 }
 
 function getApi(event) {
@@ -33,24 +33,24 @@ function getApi(event) {
     var qInput = document.querySelector('#q-drink');
     var drinkURL = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + qInput.value;
     fetch(drinkURL)
-    .then(function(response) {
-        return response.json();
-    })
-    .then(function ({drinks}) {
-        searchResultsEl.innerHTML = null;
-        console.log(drinks);
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function ({ drinks }) {
+            searchResultsEl.innerHTML = null;
+            console.log(drinks);
 
-        for (var drink of drinks) {
-            var ingredients = getIngredients(drink);
-            var ulEl = document.createElement('ul');
-            for (var ingredient of ingredients) {
-                var liEl = document.createElement('li');
-                liEl.textContent = ingredient;
-                ulEl.appendChild(liEl);
-            }
-            console.log(drink)
+            for (var drink of drinks) {
+                var ingredients = getIngredients(drink);
+                var ulEl = document.createElement('ul');
+                for (var ingredient of ingredients) {
+                    var liEl = document.createElement('li');
+                    liEl.textContent = ingredient;
+                    ulEl.appendChild(liEl);
+                }
+                console.log(drink)
 
-            var articleEl = document.createElement('article');
+                var articleEl = document.createElement('article');
                 articleEl.className = "card p-3 my-3 bg-dark text-light";
 
                 var h3El = document.createElement('h3');
@@ -69,10 +69,64 @@ function getApi(event) {
                 articleEl.appendChild(ulEl);
                 searchResultsEl.appendChild(articleEl);
                 articleEl.appendChild(btnEl);
-        }
+            }
 
-    });
+        });
 };
 
+var init = function () {
+    for (let i = 0; i < 10; i++) {   
+
+    
+        fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                // console.log(data.drinks[0])
+                var ingredients = getIngredients(data.drinks[0]);
+                console.log(ingredients)
+                // var articleEl = document.createElement("article");
+                // articleEl.className = "card p-3 my-3 bg-dark text-light";
+                var pEl = document.createElement('p')
+                // pEl.className = "card p-3 bg-dark text-light";
+                pEl.textContent = data.drinks[0].strDrink
+                var instructions = document.createElement('p')
+                instructions.textContent = data.drinks[0].strInstructions
+                // articleEl.appendChild(pEl);
+                // articleEl.appendChild(instructions);
+                // articleEl.appendChild(ingredients);
+                searchResultsEl.appendChild(pEl)
+                searchResultsEl.appendChild(instructions)
+                for (var ingredient of ingredients) {
+                    var ingredientsEl = document.createElement('p')
+                    ingredientsEl.textContent = ingredient
+                    searchResultsEl.appendChild(ingredientsEl)
+    
+                }
+            }) 
+            .catch(function (error) {
+                console.log(error);
+            });
+    } 
+
+
+}
+
+// var searchHandle = function(event) {
+//     event.preventDefault();
+//     var q = qInput.value.trim();
+//     var format = formatInput.value;
+
+//     if(!q) return;
+
+//     if (searchResultsEl) {
+//         getSearchResults(q, format);
+//     } else {
+//         location.replace("index.html?q=" + q + "&format=" + format);
+//     }
+// }
 
 searchForm.addEventListener("submit", getApi);
+
+init();
