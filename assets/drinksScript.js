@@ -61,7 +61,7 @@ function getApi(event) {
 
                 var btnEl = document.createElement('a');
                 btnEl.className = "btn btn-light text-dark";
-                btnEl.textContent = "Learn More";
+                btnEl.textContent = "Click Image";
                 btnEl.setAttribute('href', drink.strDrinkThumb)
 
                 articleEl.appendChild(h3El);
