@@ -11,6 +11,32 @@
 </head>
 
 <body>
+    <section class="row">
+        <aside class="col-12 col-md-3 p-4 bg-dark text-light">
+            <form id="drink-search-form">
+                <fieldset>
+                    <legend>Cocktail Search</legend>
+                    <div class="mb-3">
+                        <label for="q" class="form-label">Search</label>
+                        <input type="text" id="q-drink" name="q" class="form-control" placeholder="Search">
+                    </div>
+                    <button id="cocktailsubmit" type="submit" class="btn btn-light text-dark">Submit</button>
+                </fieldset>
+            </form>
+        </aside>
+        <main class="col-12 col-md-9 p-4 bg-light text-dark">
+            <h2>Search Results</h2>
+            <section id="search-results">
+                <article class="card p-3 bg-dark text-light">
+                    <h3>Cocktail Recipe</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab ex, quisquam quasi aliquam iste
+                        nihil temporibus inventore unde, itaque sapiente error nesciunt nostrum modi. Ducimus
+                        placeat repellat voluptatibus adipisci rerum.</p>
+                    <button id="m-submit" class="btn btn-light text-dark">Learn More</button>
+                </article>
+            </section>
+        </main>
+    </section>
 
     <section class="row">
         <aside class="col-12 col-md-3 p-4 bg-dark text-light">
@@ -19,29 +45,21 @@
                     <legend>Food Search</legend>
                     <div class="mb-3">
                         <label for="q" class="form-label">Search</label>
-                        <input type="text" id="q" name="q" class="form-control" placeholder="Search">
+                        <input type="text" id="q-food" name="q" class="form-control" placeholder="Search">
                     </div>
+                    <div class="mb-3">
 
-                    <button type="submit" class="btn btn-light text-dark">Submit</button>
+                    </div>
+                    <button id="foodsubmit" type="submit" class="btn btn-light text-dark">Submit</button>
                 </fieldset>
             </form>
         </aside>
-        <main class="col-12 col-md-9 p-4 bg-light text-dark">
-            <h2>Search Results</h2>
-            <section id="search-results">
-                <article class="card p-3 bg-dark text-light">
-                    <h3>Meal Recipe</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab ex, quisquam quasi aliquam iste
-                        nihil temporibus inventore unde, itaque sapiente error nesciunt nostrum modi. Ducimus
-                        placeat repellat voluptatibus adipisci rerum.</p>
-                    <button class="btn btn-light text-dark">Learn More</button>
-                </article>
-            </section>
-        </main>
-    </section>
+        </section>
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    
-    <script src="assets/foodScript.js"></script>
+    <script src="./assets/drinksScript.js"></script>
+    <script src="./assets/foodScript.js"></script>
+
 </body>
 
 </html>
