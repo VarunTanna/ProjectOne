@@ -61,16 +61,20 @@ function getApi(event) {
                 var pEl = document.createElement('p');
                 pEl.textContent = drink.strInstructions;
 
-                var btnEl = document.createElement('a');
-                btnEl.className = "btn btn-light text-dark";
-                btnEl.textContent = "Click Image";
-                btnEl.setAttribute('href', drink.strDrinkThumb);
+                var imgEl = document.createElement('img');
+                imgEl.setAttribute('src', drink.strDrinkThumb);
+
+                // var btnEl = document.createElement('a');
+                // btnEl.className = "btn btn-light text-dark";
+                // btnEl.textContent = "Click for a Image!";
+                // btnEl.setAttribute('href', drink.strDrinkThumb);
 
                 articleEl.appendChild(h3El);
                 articleEl.appendChild(pEl);
                 articleEl.appendChild(ulEl);
                 searchResultsEl.appendChild(articleEl);
-                articleEl.appendChild(btnEl);
+                // articleEl.appendChild(btnEl);
+                articleEl.appendChild(imgEl);
             }
 
         });
@@ -106,16 +110,21 @@ var init = function () {
                 var pEl = document.createElement('p');
                 pEl.textContent = drink.strInstructions;
 
-                var btnEl = document.createElement('a');
-                btnEl.className = "btn btn-light text-dark";
-                btnEl.textContent = "Click Image";
-                btnEl.setAttribute('href', drink.strDrinkThumb);
+                var imgEl = document.createElement('img');
+                imgEl.setAttribute('src', drink.strDrinkThumb);
+
+                // var btnEl = document.createElement('a');
+                // btnEl.className = "btn btn-light text-dark";
+                // btnEl.textContent = "Click for a Image!";
+                // btnEl.setAttribute('href', drink.strDrinkThumb);
 
                 articleEl.appendChild(h3El);
                 articleEl.appendChild(pEl);
                 articleEl.appendChild(ulEl);
                 searchResultsEl.appendChild(articleEl);
-                articleEl.appendChild(btnEl);
+                // articleEl.appendChild(btnEl);
+                articleEl.appendChild(imgEl);
+                
             }) 
             .catch(function (error) {
                 console.log(error);
