@@ -97,7 +97,8 @@ function getApi(event) {
 
                 var btnEl = document.createElement('a');
                 btnEl.className = "btn btn-light text-dark";
-                btnEl.textContent = "Click for Youtube video!";
+                // btnEl.textContent = "Click for Youtube video!";
+                btnEl.setAttribute('src', URL('youtube.png'))
                 btnEl.setAttribute('href', meal.strYoutube)
 
                 articleEl.appendChild(h3El);
@@ -141,6 +142,7 @@ var init = function () {
                 var btnEl = document.createElement('a');
                 btnEl.className = "btn btn-light text-dark";
                 btnEl.textContent = "Click for Youtube video!";
+                // btnEl.setAttribute(src = 'youtube.png')
                 btnEl.setAttribute('href', meal.strYoutube);
 
                 articleEl.appendChild(h3El);
