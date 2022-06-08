@@ -62,6 +62,8 @@ function getApi(event) {
                 pEl.textContent = drink.strInstructions;
 
                 var imgEl = document.createElement('img');
+                imgEl.style.height = '300px';
+                imgEl.style.width = '300px';
                 imgEl.setAttribute('src', drink.strDrinkThumb);
 
                 // var btnEl = document.createElement('a');
@@ -111,6 +113,8 @@ var init = function () {
                 pEl.textContent = drink.strInstructions;
 
                 var imgEl = document.createElement('img');
+                imgEl.style.height = '300px';
+                imgEl.style.width = '300px';
                 imgEl.setAttribute('src', drink.strDrinkThumb);
 
                 // var btnEl = document.createElement('a');
