@@ -1,0 +1,47 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Group Project</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <section class="row">
+        <aside class="col-12 col-md-3 p-4 bg-dark text-light">
+            <form id="drink-search-form">
+                <fieldset>
+                    <legend>Drink Search</legend>
+                    <div class="mb-3">
+                        <label for="q" class="form-label">Search</label>
+                        <input type="text" id="q-drink" name="q" class="form-control" placeholder="Search">
+                    </div>
+
+                    <button type="submit" id="cocktail-search"  class="btn btn-light text-dark">Submit</button>
+                </fieldset>
+            </form>
+        </aside>
+        <main class="col-12 col-md-9 p-4 bg-light text-dark">
+            <h2>Search Results</h2>
+            <section id="search-results-drinks">
+                <article class="card p-3 bg-dark text-light">
+                    <!-- <h3>Meal Recipe</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab ex, quisquam quasi aliquam iste
+                        nihil temporibus inventore unde, itaque sapiente error nesciunt nostrum modi. Ducimus
+                        placeat repellat voluptatibus adipisci rerum.</p> -->
+                    <button class="btn btn-light text-dark">Click Image</button>
+                </article>
+            </section>
+        </main>
+    </section>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="./assets/drinksScript.js"></script>
+    
+    
+</body>
+
+</html>

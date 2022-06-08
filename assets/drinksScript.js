@@ -1,6 +1,6 @@
 // drinks
 // our global var's
-var searchResultsEl = document.querySelector('#search-results');
+var searchResultsEl = document.querySelector('#search-results-drinks');
 // var qInput = document.querySelector('#q');
 var formatInput = document.querySelector('#format');
 var searchForm = document.querySelector('#drink-search-form');
@@ -30,7 +30,9 @@ function getIngredients(obj) {
 
 function getApi(event) {
     event.preventDefault();
+    console.log("test drink")
     var qInput = document.querySelector('#q-drink');
+    
     var drinkURL = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + qInput.value;
     fetch(drinkURL)
         .then(function (response) {
@@ -75,6 +77,7 @@ function getApi(event) {
 };
 
 var init = function () {
+    
     for (let i = 0; i < 10; i++) {   
 
     
@@ -136,6 +139,5 @@ var init = function () {
 //     }
 // }
 
-searchForm.addEventListener("submit", getApi);
-
 init();
+searchForm.addEventListener("submit", getApi);
