@@ -1,0 +1,12 @@
+header {
+    padding: 20px;
+    font-family: "Fira Code", "JetBrains Mono NL", "Monospace";
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+.navBar {
+    display: flex;
+    justify-content: space-between;
+}

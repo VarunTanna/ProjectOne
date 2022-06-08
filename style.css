@@ -21,7 +21,16 @@ body {
     background-repeat: no-repeat;
 }
 
+/* help resize the image to fit the screen */
+
 
 footer {
-    color: black;
+    color: white;
+    background: #4e0b4e;
+    font-family: "Fira Code", "JetBrains Mono NL", "Monospace";
+
+}
+
+.sections {
+    background-color: #4e0b4e;
 }
