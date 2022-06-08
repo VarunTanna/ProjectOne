@@ -70,42 +70,46 @@ function getApi(event) {
         .then(function ({meals}) {
             searchResultsEl.innerHTML = null;
             console.log(meals);
-            for (var meal of meals) {
-                var ingredients = getIngredients(meal);
-                var ulEl = document.createElement('ul');
-                for(var ingredient of ingredients){
-                    var liEl = document.createElement('li');
-                    liEl.textContent = ingredient;
-                    ulEl.appendChild(liEl);
+            if (meals != null) {
+                for (var meal of meals) {
+                    var ingredients = getIngredients(meal);
+                    var ulEl = document.createElement('ul');
+                    for(var ingredient of ingredients){
+                        var liEl = document.createElement('li');
+                        liEl.textContent = ingredient;
+                        ulEl.appendChild(liEl);
+                    }
+                    console.log(meal)
+    
+                    /*
+                    <article class="card p-3 my-3 bg-dark text-light">
+                      <h3>Story Title</h3>
+                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab ex, quisquam quasi aliquam iste nihil temporibus inventore unde, itaque sapiente error nesciunt nostrum modi. Ducimus placeat repellat voluptatibus adipisci rerum.</p>
+                      <button class="btn btn-light text-dark">Learn More</button>
+                    </article>
+                    */
+                    var articleEl = document.createElement('article');
+                    articleEl.className = "card p-3 my-3 bg-dark text-light";
+    
+                    var h3El = document.createElement('h3');
+                    h3El.textContent = meal.strMeal;
+    
+                    var pEl = document.createElement('p');
+                    pEl.textContent = meal.strInstructions;
+    
+                    var btnEl = document.createElement('img');
+                    btnEl.className = "btn btn-light text-dark";
+                    // btnEl.textContent = "Click for Youtube video!";
+                    // btnEl.setAttribute('src', URL('youtube.png'))
+                    btnEl.setAttribute('href', meal.strYoutube)
+    
+                    articleEl.appendChild(h3El);
+                    articleEl.appendChild(pEl);
+                    articleEl.appendChild(ulEl);
+                    searchResultsEl.appendChild(articleEl);
+                    articleEl.appendChild(btnEl);
                 }
-                console.log(meal)
-                /*
-                <article class="card p-3 my-3 bg-dark text-light">
-                  <h3>Story Title</h3>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab ex, quisquam quasi aliquam iste nihil temporibus inventore unde, itaque sapiente error nesciunt nostrum modi. Ducimus placeat repellat voluptatibus adipisci rerum.</p>
-                  <button class="btn btn-light text-dark">Learn More</button>
-                </article>
-                */
-                var articleEl = document.createElement('article');
-                articleEl.className = "card p-3 my-3 bg-dark text-light";
 
-                var h3El = document.createElement('h3');
-                h3El.textContent = meal.strMeal;
-
-                var pEl = document.createElement('p');
-                pEl.textContent = meal.strInstructions;
-
-                var btnEl = document.createElement('img');
-                btnEl.className = "btn btn-light text-dark";
-                // btnEl.textContent = "Click for Youtube video!";
-                // btnEl.setAttribute('src', URL('youtube.png'))
-                btnEl.setAttribute('href', meal.strYoutube)
-
-                articleEl.appendChild(h3El);
-                articleEl.appendChild(pEl);
-                articleEl.appendChild(ulEl);
-                searchResultsEl.appendChild(articleEl);
-                articleEl.appendChild(btnEl);
             }
         });
 };  

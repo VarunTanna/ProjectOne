@@ -30,7 +30,7 @@ function getIngredients(obj) {
 
 function getApi(event) {
     event.preventDefault();
-    console.log("test drink")
+    // console.log("test drink")
     var qInput = document.querySelector('#q-drink');
     
     var drinkURL = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + qInput.value;
@@ -41,43 +41,46 @@ function getApi(event) {
         .then(function ({ drinks }) {
             searchResultsEl.innerHTML = null;
             console.log(drinks);
-
-            for (var drink of drinks) {
-                var ingredients = getIngredients(drink);
-                var ulEl = document.createElement('ul');
-                for (var ingredient of ingredients) {
-                    var liEl = document.createElement('li');
-                    liEl.textContent = ingredient;
-                    ulEl.appendChild(liEl);
+            if (drinks !=null) {
+                for (var drink of drinks) {
+                    var ingredients = getIngredients(drink);
+                    var ulEl = document.createElement('ul');
+                    for (var ingredient of ingredients) {
+                        var liEl = document.createElement('li');
+                        liEl.textContent = ingredient;
+                        ulEl.appendChild(liEl);
+                    }
+                    console.log(drink)
+    
+                    var articleEl = document.createElement('article');
+                    articleEl.className = "card p-3 my-3 bg-dark text-light";
+    
+                    var h3El = document.createElement('h3');
+                    h3El.textContent = drink.strDrink;
+    
+                    var pEl = document.createElement('p');
+                    pEl.textContent = drink.strInstructions;
+    
+                    var imgEl = document.createElement('img');
+                    imgEl.style.height = '300px';
+                    imgEl.style.width = '300px';
+                    imgEl.setAttribute('src', drink.strDrinkThumb);
+    
+                    // var btnEl = document.createElement('a');
+                    // btnEl.className = "btn btn-light text-dark";
+                    // btnEl.textContent = "Click for a Image!";
+                    // btnEl.setAttribute('href', drink.strDrinkThumb);
+    
+                    articleEl.appendChild(h3El);
+                    articleEl.appendChild(pEl);
+                    articleEl.appendChild(ulEl);
+                    searchResultsEl.appendChild(articleEl);
+                    // articleEl.appendChild(btnEl);
+                    articleEl.appendChild(imgEl);
                 }
-                console.log(drink)
 
-                var articleEl = document.createElement('article');
-                articleEl.className = "card p-3 my-3 bg-dark text-light";
-
-                var h3El = document.createElement('h3');
-                h3El.textContent = drink.strDrink;
-
-                var pEl = document.createElement('p');
-                pEl.textContent = drink.strInstructions;
-
-                var imgEl = document.createElement('img');
-                imgEl.style.height = '300px';
-                imgEl.style.width = '300px';
-                imgEl.setAttribute('src', drink.strDrinkThumb);
-
-                // var btnEl = document.createElement('a');
-                // btnEl.className = "btn btn-light text-dark";
-                // btnEl.textContent = "Click for a Image!";
-                // btnEl.setAttribute('href', drink.strDrinkThumb);
-
-                articleEl.appendChild(h3El);
-                articleEl.appendChild(pEl);
-                articleEl.appendChild(ulEl);
-                searchResultsEl.appendChild(articleEl);
-                // articleEl.appendChild(btnEl);
-                articleEl.appendChild(imgEl);
             }
+
 
         });
 };
