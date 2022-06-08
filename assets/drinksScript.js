@@ -63,7 +63,7 @@ function getApi(event) {
 
                 var btnEl = document.createElement('a');
                 btnEl.className = "btn btn-light text-dark";
-                btnEl.textContent = "Click Image";
+                btnEl.textContent = "Click for a Image!";
                 btnEl.setAttribute('href', drink.strDrinkThumb);
 
                 articleEl.appendChild(h3El);
@@ -108,7 +108,7 @@ var init = function () {
 
                 var btnEl = document.createElement('a');
                 btnEl.className = "btn btn-light text-dark";
-                btnEl.textContent = "Click Image";
+                btnEl.textContent = "Click for a Image!";
                 btnEl.setAttribute('href', drink.strDrinkThumb);
 
                 articleEl.appendChild(h3El);
