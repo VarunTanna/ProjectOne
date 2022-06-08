@@ -98,16 +98,22 @@ function getApi(event) {
                     pEl.textContent = meal.strInstructions;
 
                     var btnEl = document.createElement('img');
-                    btnEl.className = "btn btn-light text-dark";
+                    btnEl.className = "youtubeimg";
                     // btnEl.textContent = "Click for Youtube video!";
                     // btnEl.setAttribute('src', URL('youtube.png'))
-                    btnEl.setAttribute('href', meal.strYoutube)
+                    btnEl.setAttribute('src', './youtube.png')
+
+                    var aEl = document.createElement('a');
+                    aEl.setAttribute('href', meal.strYoutube);
+                    aEl.classList.add("d-flex", "justify-content-center");
+                    aEl.appendChild(btnEl);
+
 
                     articleEl.appendChild(h3El);
                     articleEl.appendChild(pEl);
                     articleEl.appendChild(ulEl);
                     searchResultsEl.appendChild(articleEl);
-                    articleEl.appendChild(btnEl);
+                    articleEl.appendChild(aEl);
                 }
 
             }
