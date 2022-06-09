@@ -57,13 +57,12 @@ function getIngredients(obj) {
 }
 
 
-function getApi(event) {
-    event.preventDefault();
-    var qInput = document.querySelector('#q');
-    console.log(qInput.value);
-    var foodURL = "https://www.themealdb.com/api/json/v1/1/search.php?s=" + qInput.value;
+function getApi(value) {
+    
+    console.log(value);
+    var foodURL = "https://www.themealdb.com/api/json/v1/1/search.php?s=" + value;
     var foodStorage = JSON.parse(window.localStorage.getItem("storedFoods")) || [];
-    var searchItem = qInput.value.toLowerCase();
+    var searchItem = value.toLowerCase();
     console.log(searchItem);
     console.log(foodStorage);
     if (!foodStorage.includes(searchItem)) {
@@ -195,6 +194,10 @@ for (let i = 0; i < savedFoods.length; i++) {
     liEl.classList.add("list-group-item")
     liEl.textContent = element
     ulEl.appendChild(liEl);
+    liEl.addEventListener("click", function (event) {
+        var clicked = event.target.textContent
+        getApi(clicked);
+    })
 }
 
 
@@ -206,4 +209,8 @@ for (let i = 0; i < savedFoods.length; i++) {
 
 
 init();
-searchForm.addEventListener("submit", getApi);
+searchForm.addEventListener("submit", function(e) {
+    e.preventDefault()
+    var qInput = document.querySelector('#q').value
+    getApi(qInput)
+});

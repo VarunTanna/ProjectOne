@@ -28,12 +28,12 @@ function getIngredients(obj) {
         .filter(ingredient => ingredient);
 }
 
-function getApi(event) {
-    event.preventDefault();
+function getApi(value) {
+    // event.preventDefault();
     // console.log("test drink")
-    var qInput = document.querySelector('#q-drink');
+   
     var drinkStorage = JSON.parse(window.localStorage.getItem("storedDrinks")) || [];
-    var searchItem = qInput.value.toLowerCase();
+    var searchItem = value;
     //console.log(foodStorage);
     console.log(searchItem);
     if (!drinkStorage.includes(searchItem)) {
@@ -41,8 +41,8 @@ function getApi(event) {
 
     }
     window.localStorage.setItem("storedDrinks", JSON.stringify(drinkStorage));
-    
-    var drinkURL = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + qInput.value;
+
+    var drinkURL = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + value;
     fetch(drinkURL)
         .then(function (response) {
             return response.json();
@@ -50,7 +50,7 @@ function getApi(event) {
         .then(function ({ drinks }) {
             searchResultsEl.innerHTML = null;
             console.log(drinks);
-            if (drinks !=null) {
+            if (drinks != null) {
                 for (var drink of drinks) {
                     var ingredients = getIngredients(drink);
                     var ulEl = document.createElement('ul');
@@ -60,26 +60,26 @@ function getApi(event) {
                         ulEl.appendChild(liEl);
                     }
                     console.log(drink)
-    
+
                     var articleEl = document.createElement('article');
                     articleEl.className = "card p-3 my-3 bg-dark text-light";
-    
+
                     var h3El = document.createElement('h3');
                     h3El.textContent = drink.strDrink;
-    
+
                     var pEl = document.createElement('p');
                     pEl.textContent = drink.strInstructions;
-    
+
                     var imgEl = document.createElement('img');
                     imgEl.style.height = '300px';
                     imgEl.style.width = '300px';
                     imgEl.setAttribute('src', drink.strDrinkThumb);
-    
+
                     // var btnEl = document.createElement('a');
                     // btnEl.className = "btn btn-light text-dark";
                     // btnEl.textContent = "Click for a Image!";
                     // btnEl.setAttribute('href', drink.strDrinkThumb);
-    
+
                     articleEl.appendChild(h3El);
                     articleEl.appendChild(pEl);
                     articleEl.appendChild(ulEl);
@@ -95,16 +95,16 @@ function getApi(event) {
 };
 
 var init = function () {
-    
-    for (let i = 0; i < 10; i++) {   
 
-    
+    for (let i = 0; i < 10; i++) {
+
+
         fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
             .then(function (response) {
                 return response.json();
             })
             .then(function (data) {
-                console.log(data) 
+                console.log(data)
                 var drink = data.drinks[0];
                 var ingredients = getIngredients(drink);
                 var ulEl = document.createElement('ul');
@@ -140,12 +140,12 @@ var init = function () {
                 searchResultsEl.appendChild(articleEl);
                 // articleEl.appendChild(btnEl);
                 articleEl.appendChild(imgEl);
-                
-            }) 
+
+            })
             .catch(function (error) {
                 console.log(error);
             });
-    } 
+    }
 
 
 }
@@ -160,6 +160,11 @@ for (let i = 0; i < savedDrinks.length; i++) {
     var liEl = document.createElement('button');
     liEl.classList.add("list-group-item")
     liEl.textContent = element
+    liEl.setAttribute("button", savedDrinks[i]);
+    liEl.addEventListener("click", function (event) {
+        var clicked = event.target.textContent
+        getApi(clicked);
+    })
     ulEl.appendChild(liEl);
 }
 
@@ -179,4 +184,9 @@ for (let i = 0; i < savedDrinks.length; i++) {
 // }
 
 init();
-searchForm.addEventListener("submit", getApi);
+searchForm.addEventListener("click", function(e) {
+    e.preventDefault()
+    var drink = document.querySelector('#q-drink').value
+    console.log(drink)
+    getApi(drink)
+});
