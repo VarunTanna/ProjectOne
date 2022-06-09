@@ -32,15 +32,15 @@ function getApi(event) {
     event.preventDefault();
     // console.log("test drink")
     var qInput = document.querySelector('#q-drink');
-    var foodStorage = JSON.parse(window.localStorage.getItem("storedFoods")) || [];
+    var drinkStorage = JSON.parse(window.localStorage.getItem("storedDrinks")) || [];
     var searchItem = qInput.value.toLowerCase();
-    console.log(foodStorage);
+    //console.log(foodStorage);
     console.log(searchItem);
-    if (!foodStorage.includes(searchItem)) {
-        foodStorage.push(searchItem);
+    if (!drinkStorage.includes(searchItem)) {
+        drinkStorage.push(searchItem);
 
     }
-    window.localStorage.setItem("storedFoods", JSON.stringify(foodStorage));
+    window.localStorage.setItem("storedDrinks", JSON.stringify(drinkStorage));
     
     var drinkURL = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + qInput.value;
     fetch(drinkURL)
@@ -150,11 +150,12 @@ var init = function () {
 
 }
 
-let savedFoods = JSON.parse(window.localStorage.getItem("storedFoods")) || [];
+let savedDrinks = JSON.parse(window.localStorage.getItem("storedDrinks")) || [];
 var ulEl = document.getElementById("storedList");
+console.log(savedDrinks);
 
-for (let i = 0; i < savedFoods.length; i++) {
-    const element = savedFoods[i];
+for (let i = 0; i < savedDrinks.length; i++) {
+    const element = savedDrinks[i];
     console.log(element);
     var liEl = document.createElement('button');
     liEl.classList.add("list-group-item")
