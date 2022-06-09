@@ -14,7 +14,7 @@ header {
 
 body {
     text-align: center;
-    flex: center;
+   
     background-image: url("background.jpeg");
     background-size: cover;
     background-position: center;
