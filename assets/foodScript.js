@@ -62,6 +62,17 @@ function getApi(event) {
     var qInput = document.querySelector('#q');
     console.log(qInput.value);
     var foodURL = "https://www.themealdb.com/api/json/v1/1/search.php?s=" + qInput.value;
+    var foodStorage = JSON.parse(window.localStorage.getItem("storedFoods")) || [];
+    var searchItem = qInput.value.toLowerCase();
+    console.log(searchItem);
+    console.log(foodStorage);
+    if (!foodStorage.includes(searchItem)) {
+        foodStorage.push(searchItem);
+
+    }
+    window.localStorage.setItem("storedFoods", JSON.stringify(foodStorage));
+
+
 
     fetch(foodURL)
         .then(function (response) {
@@ -70,6 +81,8 @@ function getApi(event) {
         .then(function ({ meals }) {
             searchResultsEl.innerHTML = null;
             console.log(meals);
+    
+
             if (meals != null) {
                 for (var meal of meals) {
                     var ingredients = getIngredients(meal);
@@ -169,6 +182,24 @@ var init = function () {
             });
     }
 }
+
+
+let savedFoods = JSON.parse(window.localStorage.getItem("storedFoods")) || [];
+var ulEl = document.getElementById("storedList");
+
+
+for (let i = 0; i < savedFoods.length; i++) {
+    const element = savedFoods[i];
+    console.log(element);
+    var liEl = document.createElement('button');
+    liEl.classList.add("list-group-item")
+    liEl.textContent = element
+    ulEl.appendChild(liEl);
+}
+
+
+
+
 
 // changed the drinkURL's to foodURL's
 
