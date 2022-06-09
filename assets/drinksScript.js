@@ -32,6 +32,15 @@ function getApi(event) {
     event.preventDefault();
     // console.log("test drink")
     var qInput = document.querySelector('#q-drink');
+    var foodStorage = JSON.parse(window.localStorage.getItem("storedFoods")) || [];
+    var searchItem = qInput.value.toLowerCase();
+    console.log(foodStorage);
+    console.log(searchItem);
+    if (!foodStorage.includes(searchItem)) {
+        foodStorage.push(searchItem);
+
+    }
+    window.localStorage.setItem("storedFoods", JSON.stringify(foodStorage));
     
     var drinkURL = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + qInput.value;
     fetch(drinkURL)
@@ -140,6 +149,19 @@ var init = function () {
 
 
 }
+
+let savedFoods = JSON.parse(window.localStorage.getItem("storedFoods")) || [];
+var ulEl = document.getElementById("storedList");
+
+for (let i = 0; i < savedFoods.length; i++) {
+    const element = savedFoods[i];
+    console.log(element);
+    var liEl = document.createElement('button');
+    liEl.classList.add("list-group-item")
+    liEl.textContent = element
+    ulEl.appendChild(liEl);
+}
+
 
 // var searchHandle = function(event) {
 //     event.preventDefault();
