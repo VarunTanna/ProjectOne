@@ -4,6 +4,13 @@
     margin: 0;
 }
 
+html {
+    background: url("background1.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
 header {
     padding: 20px;
     font-family: "Fira Code", "JetBrains Mono NL", "Monospace";
@@ -13,12 +20,10 @@ header {
 }
 
 body {
+    
     text-align: center;
-   
-    background-image: url("background.jpeg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    
+    
 }
 
 /* help resize the image to fit the screen */
@@ -34,3 +39,4 @@ footer {
 .sections {
     background-color: #4e0b4e;
 }
+
